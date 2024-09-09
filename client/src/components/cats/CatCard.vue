@@ -1,6 +1,6 @@
 <template>
   <li class="cat-card">
-    <img class="cat-card__image" src="@/images/cat-1.jpg" alt="1" />
+    <img class="cat-card__image" :src="image" alt="1" />
 
     <div class="cat-card__info">
       <h3>{{ name }}</h3>
@@ -13,6 +13,7 @@
 interface Props {
   name: string;
   description: string;
+  image: string;
 }
 
 defineProps<Props>();
@@ -74,6 +75,9 @@ defineProps<Props>();
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    padding: 8px;
+    text-align: center;
 
     opacity: 0;
 
