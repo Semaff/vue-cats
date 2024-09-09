@@ -27,7 +27,7 @@ app.use(
   })
 );
 
-app.use(express.static(path.resolve(__dirname, "static")));
+app.use("/public", express.static(path.resolve(__dirname, "..", "public")));
 
 const port = process.env.PORT || 3000;
 const catPath = __dirname + "/../data/cats.json";
