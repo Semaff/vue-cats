@@ -1,5 +1,5 @@
 <template>
-  <li class="cat-card">
+  <li class="cat-card" @click="toggle">
     <img class="cat-card__image" :src="image" alt="1" />
 
     <div class="cat-card__info">
@@ -7,16 +7,33 @@
       <p>{{ description }}</p>
     </div>
   </li>
+
+  <MyModal :open="open" @toggle="toggle">
+    <CatInformation
+      :id="id"
+      :name="name"
+      :description="description"
+      :image="image"
+      @on-delete="toggle"
+    />
+  </MyModal>
 </template>
 
 <script setup lang="ts">
-interface Props {
-  name: string;
-  description: string;
-  image: string;
-}
+import MyModal from '@/ui/MyModal.vue';
+import CatInformation from './CatInformation.vue';
+import { ref } from 'vue';
+import type { Cat } from '@/types/Cat';
+
+interface Props extends Cat {}
 
 defineProps<Props>();
+
+const open = ref(false);
+
+const toggle = () => {
+  open.value = !open.value;
+};
 </script>
 
 <style scoped lang="scss">

@@ -21,7 +21,7 @@ defineEmits<Emits>();
 
 <style scoped lang="scss">
 .my-modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -35,8 +35,6 @@ defineEmits<Emits>();
   background-color: rgba(#000, 0.7);
 
   &__inner {
-    width: 100%;
-    max-width: 500px;
     padding: 40px;
     background-color: #fff;
     border-radius: 8px;

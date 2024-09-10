@@ -1,30 +1,15 @@
 <template>
   <ul class="cat-list">
-    <CatCard v-for="cat in cats" :key="cat.id" v-bind="cat" />
+    <CatCard v-for="cat in catStore.cats" :key="cat.id" v-bind="cat" />
   </ul>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { useCatStore } from '@/store/catStore';
 
 import CatCard from './CatCard.vue';
 
-interface Cat {
-  id: string | number;
-  name: string;
-  description: string;
-  image: string;
-}
-
-const cats = ref<Cat[]>([]);
-
-const fetchCats = async () => {
-  const response = await fetch('http://localhost:3000/cats');
-
-  cats.value = await response.json();
-};
-
-onMounted(() => fetchCats());
+const catStore = useCatStore();
 </script>
 
 <style scoped>

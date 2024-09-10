@@ -9,7 +9,6 @@
 defineProps({
   id: {
     type: String,
-    required: true,
   },
   label: {
     type: String,

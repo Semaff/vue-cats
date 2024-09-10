@@ -11,13 +11,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import { v4 } from 'uuid';
+import { useCatStore } from '@/store/catStore';
+
 import MyButton from '@/ui/MyButton.vue';
 import MyInput from '@/ui/MyInput.vue';
 
 const name = ref('');
 const description = ref('');
 const file = ref<File | null>(null);
+
+const catStore = useCatStore();
 
 const emit = defineEmits(['onSubmit']);
 
@@ -32,17 +35,11 @@ const setFile = (e: Event) => {
 const addCat = () => {
   if (!name.value || !description.value || !file.value) return;
 
-  const formData = new FormData();
+  catStore.addCat({ name: name.value, description: description.value, image: file.value });
 
-  formData.append('id', v4());
-  formData.append('name', name.value);
-  formData.append('description', description.value);
-  formData.append('image', file.value);
-
-  fetch('http://localhost:3000/cats', {
-    method: 'POST',
-    body: formData,
-  });
+  name.value = '';
+  description.value = '';
+  file.value = null;
 
   emit('onSubmit');
 };
