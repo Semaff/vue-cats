@@ -3,6 +3,7 @@ import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import bodyParser from "body-parser";
 import multer, { diskStorage } from "multer";
 
 dotenv.config();
@@ -19,6 +20,8 @@ const upload = multer({
     },
   }),
 });
+
+app.use(bodyParser.json());
 
 app.use(
   cors({
@@ -51,6 +54,28 @@ app.post("/cats", upload.single("image"), (req, res) => {
   };
 
   const updatedCats = [...cats, newCat];
+
+  fs.writeFileSync(catPath, JSON.stringify(updatedCats));
+
+  res.json(updatedCats);
+});
+
+app.delete("/cats/:id", (req, res) => {
+  const cats = JSON.parse(fs.readFileSync(catPath, "utf8"));
+
+  const updatedCats = cats.filter((cat: any) => cat.id != req.params.id);
+
+  fs.writeFileSync(catPath, JSON.stringify(updatedCats));
+
+  res.json(updatedCats);
+});
+
+app.patch("/cats/:id", (req, res) => {
+  const cats = JSON.parse(fs.readFileSync(catPath, "utf8"));
+
+  const updatedCats = cats.map((cat: any) =>
+    cat.id == req.params.id ? { ...cat, ...req.body } : cat
+  );
 
   fs.writeFileSync(catPath, JSON.stringify(updatedCats));
 
