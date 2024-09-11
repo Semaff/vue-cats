@@ -3,59 +3,49 @@
     <img class="cat-information__image" :src="image" alt="123" />
 
     <div class="cat-information__info">
-      <MySwitchableInput :writable="writable" v-model="reactiveName">
-        <h2>{{ reactiveName }}</h2>
-      </MySwitchableInput>
-
-      <MySwitchableInput :writable="writable" v-model="reactiveDescription">
-        <p>
-          {{ reactiveDescription }}
-        </p>
-      </MySwitchableInput>
+      <h2>{{ name }}</h2>
+      <p>{{ description }}</p>
 
       <div class="cat-information__actions">
-        <MyButton @click="updateCat">{{ writable ? 'Сохранить' : 'Редактировать' }}</MyButton>
+        <MyButton @click="toggle">Редактировать</MyButton>
         <MyButton @click="deleteCat(id)">Удалить</MyButton>
       </div>
     </div>
   </div>
+
+  <MyModal :open="open" @toggle="toggle">
+    <EditCatForm v-bind="props" @on-submit="toggle" />
+  </MyModal>
 </template>
 
 <script setup lang="ts">
 import { useCatStore } from '@/store/catStore';
 
 import MyButton from '@/ui/MyButton.vue';
+import MyModal from '@/ui/MyModal.vue';
 
 import type { Cat } from '@/types/Cat';
-import MySwitchableInput from '@/ui/inputs/MySwitchableInput.vue';
+import EditCatForm from './forms/EditCatForm.vue';
 import { ref } from 'vue';
 
 interface Props extends Cat {}
 
 const props = defineProps<Props>();
+
 const emit = defineEmits(['onDelete']);
 
 const catStore = useCatStore();
 
-const writable = ref(false);
-const reactiveName = ref(props.name);
-const reactiveDescription = ref(props.description);
+const open = ref(false);
 
 const deleteCat = (id: string | number) => {
   catStore.deleteCat(id);
+
   emit('onDelete');
 };
 
-const updateCat = () => {
-  writable.value = !writable.value;
-
-  if (!writable.value) {
-    catStore.updateCat({
-      id: props.id,
-      name: reactiveName.value,
-      description: reactiveDescription.value,
-    });
-  }
+const toggle = () => {
+  open.value = !open.value;
 };
 </script>
 

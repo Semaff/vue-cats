@@ -1,5 +1,5 @@
 <template>
-  <form class="cat-form" @submit.prevent="addCat">
+  <form class="add-cat-form" @submit.prevent="addCat">
     <h3>Добавить своего котея</h3>
     <MyInput id="cat-name" v-model="name" label="Имя:" type="text" />
     <MyInput id="cat-description" v-model="description" label="Описание:" type="text" />
@@ -46,7 +46,7 @@ const addCat = () => {
 </script>
 
 <style scoped lang="scss">
-.cat-form {
+.add-cat-form {
   display: flex;
   flex-direction: column;
   align-items: center;

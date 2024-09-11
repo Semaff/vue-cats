@@ -6,7 +6,7 @@
   </div>
 
   <MyModal :open="open" @toggle="toggle">
-    <CatForm @on-submit="toggle" />
+    <AddCatForm @on-submit="toggle" />
   </MyModal>
 </template>
 
@@ -19,7 +19,7 @@ import MySelect from '@/ui/MySelect.vue';
 import type { SelectOption } from '@/ui/MySelect.vue';
 import MyButton from '@/ui/MyButton.vue';
 import MyModal from '@/ui/MyModal.vue';
-import CatForm from './CatForm.vue';
+import AddCatForm from './forms/AddCatForm.vue';
 
 export type CatSort = 'name' | 'created';
 
