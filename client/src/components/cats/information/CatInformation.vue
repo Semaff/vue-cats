@@ -25,7 +25,7 @@ import MyButton from '@/ui/MyButton.vue';
 import MyModal from '@/ui/MyModal.vue';
 
 import type { Cat } from '@/types/Cat';
-import EditCatForm from './forms/EditCatForm.vue';
+import EditCatForm from '../forms/EditCatForm.vue';
 import { ref } from 'vue';
 
 interface Props extends Cat {}

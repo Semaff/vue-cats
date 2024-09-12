@@ -19,7 +19,7 @@ import MySelect from '@/ui/MySelect.vue';
 import type { SelectOption } from '@/ui/MySelect.vue';
 import MyButton from '@/ui/MyButton.vue';
 import MyModal from '@/ui/MyModal.vue';
-import AddCatForm from './forms/AddCatForm.vue';
+import AddCatForm from '../forms/AddCatForm.vue';
 
 export type CatSort = 'name' | 'created';
 

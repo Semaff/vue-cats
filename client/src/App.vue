@@ -7,7 +7,7 @@
 import { onMounted } from 'vue';
 
 import MyHeader from '@/components/header/MyHeader.vue';
-import CatSection from '@/components/cats/CatSection.vue';
+import { CatSection } from '@/components/cats';
 
 import { useCatStore } from './store/catStore';
 

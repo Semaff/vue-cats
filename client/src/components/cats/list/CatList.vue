@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { useCatStore } from '@/store/catStore';
 
-import CatCard from './CatCard.vue';
+import CatCard from '../card/CatCard.vue';
 
 const catStore = useCatStore();
 </script>

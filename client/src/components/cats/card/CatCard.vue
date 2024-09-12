@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import MyModal from '@/ui/MyModal.vue';
-import CatInformation from './CatInformation.vue';
+import CatInformation from '../information/CatInformation.vue';
 import { ref } from 'vue';
 import type { Cat } from '@/types/Cat';
 

@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import CatList from './CatList.vue';
-import CatControls from './CatControls.vue';
+import CatList from '../list/CatList.vue';
+import CatControls from '../controls/CatControls.vue';
 </script>
 
 <style scoped lang="scss">
